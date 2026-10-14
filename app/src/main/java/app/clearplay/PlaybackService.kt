@@ -14,6 +14,7 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.google.common.util.concurrent.Futures
@@ -48,6 +49,8 @@ class PlaybackService : MediaSessionService() {
             .setEnableDecoderFallback(true)
 
         val player = ExoPlayer.Builder(this, renderers)
+            // Reads files through ScrambledMp4DataSource so .mp4a/.mp4b/.mp5 files play too.
+            .setMediaSourceFactory(DefaultMediaSourceFactory(ScrambledMp4DataSource.Factory(this)))
             .setAudioAttributes(
                 AudioAttributes.Builder()
                     .setUsage(C.USAGE_MEDIA)
