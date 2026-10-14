@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Clearplay</string>
+    <string name="empty_title">Clearplay</string>
+    <string name="empty_hint">No ads. No accounts. No internet.\nOpen a video or song to start.</string>
+    <string name="open_files">Open files</string>
+    <string name="add_subtitles">Add subtitles</string>
+    <string name="queue">Queue</string>
+    <string name="picture_size">Picture size</string>
+    <string name="clear_queue">Clear queue</string>
+    <string name="close">Close</string>
+    <string name="queue_empty">The queue is empty.</string>
+    <string name="open_video_first">Open a video first, then add subtitles.</string>
+    <string name="subtitles_added">Subtitles added: %1$s</string>
+    <string name="resumed_at">Resumed at %1$s</string>
+    <string name="cant_play">Can\'t play this file: %1$s</string>
+    <string name="fit">Fit</string>
+    <string name="crop">Crop</string>
+    <string name="stretch">Stretch</string>
+</resources>
