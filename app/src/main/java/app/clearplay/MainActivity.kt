@@ -189,7 +189,7 @@ class MainActivity : ComponentActivity() {
         // Top bar follows the built-in controls; system bars stay hidden while watching.
         playerView.setControllerVisibilityListener(PlayerView.ControllerVisibilityListener { visibility ->
             topBar.visibility = if (visibility == View.VISIBLE || controller?.mediaItemCount == 0) View.VISIBLE else View.GONE
-            setImmersive(visibility != View.VISIBLE)
+            applyImmersive(visibility != View.VISIBLE)
         })
 
         // Rotate button inside the controls.
@@ -317,7 +317,7 @@ class MainActivity : ComponentActivity() {
         flash(getString(arrayOf(R.string.fit, R.string.crop, R.string.stretch)[resizeIndex]))
     }
 
-    private fun setImmersive(on: Boolean) {
+    private fun applyImmersive(on: Boolean) {
         val ctl = WindowInsetsControllerCompat(window, window.decorView)
         ctl.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         if (on && (controller?.mediaItemCount ?: 0) > 0) ctl.hide(WindowInsetsCompat.Type.systemBars())
