@@ -24,7 +24,10 @@ jobs:
       - name: Show compile errors
         if: failure()
         run: |
-          grep -E "^e: |What went wrong|> " "$GITHUB_WORKSPACE/build.log" | head -40 | while IFS= read -r line; do echo "::error::$line"; done
+          L="$GITHUB_WORKSPACE/build.log"
+          { grep -E "^e: " "$L"; grep -A6 "What went wrong" "$L"; } | head -60 > errs.txt || true
+          split -l 6 errs.txt part_
+          for f in part_*; do msg=$(sed 's/%/%25/g' "$f" | awk '{printf "%s%%0A", $0}'); echo "::error::$msg"; done
       - uses: actions/upload-artifact@v4
         with:
           name: Clearplay-apk
