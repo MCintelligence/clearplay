@@ -157,7 +157,7 @@ class PlaybackService : MediaSessionService() {
                 builder.setSubtitleConfigurations(
                     listOf(
                         MediaItem.SubtitleConfiguration.Builder(Uri.parse(sub))
-                            .setMimeType(extras.getString(EXTRA_SUB_MIME))
+                            .setMimeType(extras?.getString(EXTRA_SUB_MIME))
                             .setSelectionFlags(C.SELECTION_FLAG_DEFAULT)
                             .setLabel("Subtitles")
                             .build()

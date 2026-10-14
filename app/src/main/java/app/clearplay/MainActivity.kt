@@ -274,7 +274,7 @@ class MainActivity : ComponentActivity() {
     private fun showQueue() {
         val c = controller ?: return
         if (c.mediaItemCount == 0) { toast(getString(R.string.queue_empty)); return }
-        val titles = Array(c.mediaItemCount) { i ->
+        val titles = Array<CharSequence>(c.mediaItemCount) { i ->
             val t = c.getMediaItemAt(i).mediaMetadata.displayTitle ?: c.getMediaItemAt(i).mediaMetadata.title ?: "Item ${i + 1}"
             if (i == c.currentMediaItemIndex) "▶  $t" else "     $t"
         }

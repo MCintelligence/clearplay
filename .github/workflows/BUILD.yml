@@ -20,7 +20,11 @@ jobs:
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
           cd "$(dirname "$(find . -name settings.gradle.kts -not -path './.git/*' | head -1)")"
-          gradle assembleRelease --no-daemon
+          gradle assembleRelease --no-daemon 2>&1 | tee "$GITHUB_WORKSPACE/build.log"; exit ${PIPESTATUS[0]}
+      - name: Show compile errors
+        if: failure()
+        run: |
+          grep -E "^e: |What went wrong|> " "$GITHUB_WORKSPACE/build.log" | head -40 | while IFS= read -r line; do echo "::error::$line"; done
       - uses: actions/upload-artifact@v4
         with:
           name: Clearplay-apk
